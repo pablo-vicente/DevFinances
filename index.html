@@ -18,33 +18,44 @@
 <body>
 
     <header>
-        <h1 id="logo">dev.finance$</h1>
+        <img src="./assets/logo.svg" alt="Logo Dev Finance">
     </header>
 
     <main class="container">
 
         <section id="balance">
-            <h2>Balanços</h2>
+            <h2 class="sr-only">Balanços</h2>
 
             <div class="card">
-                <h3>Entradas</h2>
-                    <p>R$ 5.000,00</p>
+                <h3>
+                    <span>Entradas</span>
+                    <img src="./assets/income.svg" alt="Image de entradas" />
+                </h3>
+                <p>R$ 5.000,00</p>
             </div>
 
             <div class="card">
-                <h3>Saídas</h2>
-                    <p>R$ 2.000,00</p>
+                <h3>
+                    <span>Saídas</span>
+                    <img src="./assets/expense.svg" alt="Image de saídas" />
+                </h3>
+                <p>R$ 2.000,00</p>
             </div>
 
             <div class="card total">
-                <h3>Total</h2>
-                    <p>R$ 3.000,00</p>
+                <h3>
+                    <span>Total</span>
+                    <img src="./assets/total.svg" alt="Image de total" />
+                </h3>
+                <p>R$ 3.000,00</p>
             </div>
 
         </section>
 
         <section id="transaction">
-            <h2>Transações</h2>
+            <h2 class="sr-only">Transações</h2>
+
+            <a href="#" onclick="modal.open()" class="buttuon new">+ Nova Transação</a>
 
             <table id="data-table">
                 <thead>
@@ -52,6 +63,7 @@
                         <th>Descrição</th>
                         <th>Valor</th>
                         <th>Data</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -60,30 +72,90 @@
                         <td class="description">Luz</td>
                         <td class="expense">-R$ 500,00</td>
                         <td class="date">23/01/2021</td>
+                        <td>
+                            <img src="./assets/minus.svg" alt="Remover transação">
+                        </td>
                     </tr>
                     <tr>
                         <td class="description">Criação Web Site</td>
                         <td class="income">R$ 5000,00</td>
                         <td class="date">23/01/2021</td>
+                        <td>
+                            <img src="./assets/minus.svg" alt="Remover transação">
+                        </td>
                     </tr>
                     <tr>
                         <td class="description">Internet</td>
                         <td class="expense">-R$ 200,00</td>
                         <td class="date">23/01/2021</td>
+                        <td>
+                            <img src="./assets/minus.svg" alt="Remover transação">
+                        </td>
                     </tr>
                 </tbody>
 
             </table>
         </section>
-
-
-
     </main>
 
     <footer>
         <p>dev.finance$</p>
     </footer>
 
+    <script>
+        const modal = {
+            open() {
+                // Abrir modal
+                // Adicionar classe active ao modal
+                document.querySelector(".modal-overlay").classList.add("active")
+            },
+            close() {
+                // Fechar modal
+                // Remove clase active do Modal
+                document.querySelector(".modal-overlay").classList.remove("active")
+            }
+        }
+
+
+
+    </script>
+
 </body>
 
 </html>
+
+
+<div class="modal-overlay">
+    <div class="modal">
+        <div class="form">
+            <h2>
+                Nova Transação
+            </h2>
+            <form>
+                <div class="input-group">
+                    <label class="sr-only" for="description"></label>
+                    <input type="text" id="description" name="description" value="" placeholder="Descrição" />
+                </div>
+
+                <div class="input-group">
+                    <label class="sr-only" for="amount"></label>
+                    <input type="number" id="amount" name="amount" value="" step="0.01" placeholder="0,00" />
+
+                    <small class="help">
+                        Use o sinal - (negativo) para despesas e, (vírgula) para casas decimais
+                    </small>
+                </div>
+
+                <div class="input-group">
+                    <label class="sr-only" for="date"></label>
+                    <input type="date" id="date" name="date" value="" placeholder="01/01/2021" />
+                </div>
+
+                <div class="input-group actions">
+                    <a href="#" onclick="modal.close()" class="button cancel">Cancelar</a>
+                    <button>Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
